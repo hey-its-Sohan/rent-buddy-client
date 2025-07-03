@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Components/Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
+
+  const { createUser } = use(AuthContext)
+
+  const handleSignUp = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form)
+    const { email, password } = Object.fromEntries(formData.entries())
+
+    createUser(email, password)
+      .then((result) => {
+        // Signed up 
+        toast.success('Account Created Successfully.')
+        console.log(result.user);
+        // ...
+      })
+      .catch((error) => {
+        console.log("Error signing up:", error.code, error.message);
+        // ..
+      });
+  }
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
@@ -12,15 +35,15 @@ const SignUp = () => {
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
               <h1 className="text-5xl font-bold">Sign Up now!</h1>
-              <fieldset className="fieldset">
+              <form onSubmit={handleSignUp} className="fieldset">
                 <label className="label text-xl mt-2">Name</label>
-                <input type="text" className="input" placeholder="Name" />
+                <input type="text" name='name' className="input" placeholder="Name" />
                 <label className="label text-xl mt-2">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                <input type="email" name='email' className="input" placeholder="Email" />
                 <label className="label text-xl mt-2">Photo URL</label>
                 <input type="text" name='photoURL' className="input" placeholder="URL" />
                 <label className="label text-xl">Password</label>
-                <input type="password" className="input" placeholder="Password" />
+                <input type="password" name='password' className="input" placeholder="Password" />
 
                 <button className="btn text-white shadow-md text-lg bg-purple-500 mt-4">Sign Up</button>
                 <div className="divider text-lg text-slate-400 my-2">Or</div>
@@ -29,7 +52,7 @@ const SignUp = () => {
                   Sign Up with Google
                 </button>
                 <p className='text-lg mt-2'>Already have an account? <Link to='/login' className='text-purple-500 text-lg hover:underline'>Login Now</Link></p>
-              </fieldset>
+              </form>
             </div>
           </div>
         </div>

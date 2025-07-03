@@ -38,15 +38,21 @@ const AddPost = () => {
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-purple-500 rounded-box border p-4">
             <label className="label text-cyan-500 text-lg">Availability</label>
-            <input type="text" name='availability' className="input w-full" placeholder="Enter Availability" />
+            <select name='availability' className="select w-full">
+              <option disabled={true}>Choose Availability</option>
+              <option>Available</option>
+              <option>Not Available</option>
+
+            </select>
+            {/* <input type="text" name='availability' className="input w-full" placeholder="Enter Availability" /> */}
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-purple-500 rounded-box border p-4">
             <label className="label text-cyan-500 text-lg ">User Email</label>
-            <input type="text" name='email' className="input w-full" placeholder="User Email" />
+            <input readOnly type="text" name='email' className="input w-full cursor-not-allowed" placeholder="User Email" />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-purple-500 rounded-box border p-4">
             <label className="label text-cyan-500 text-lg">User Name</label>
-            <input type="text" name='name' className="input w-full" placeholder="User Name" />
+            <input readOnly type="text" name='name' className="input w-full cursor-not-allowed" placeholder="User Name" />
           </fieldset>
         </div>
 
