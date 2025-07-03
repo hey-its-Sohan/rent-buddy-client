@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
-
+import { AuthContext } from '../../Components/Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
+
+  const { signInUser } = use(AuthContext)
+
+  const handleSignIn = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form)
+    const { email, password } = Object.fromEntries(formData.entries())
+
+    // sign in
+    signInUser(email, password)
+      .then(result => {
+        toast.success('Login Successfully.')
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log("Error signing up:", error.code, error.message);
+        // ..
+      });
+  }
+
+
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
@@ -13,11 +36,11 @@ const Login = () => {
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
               <h1 className="text-5xl font-bold">Login now!</h1>
-              <fieldset className="fieldset">
+              <form onSubmit={handleSignIn} className="fieldset">
                 <label className="label text-xl">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                <input type="email" name='email' className="input" placeholder="Email" />
                 <label className="label text-xl">Password</label>
-                <input type="password" className="input" placeholder="Password" />
+                <input type="password" name='password' className="input" placeholder="Password" />
                 <div><a className="link link-hover">Forgot password?</a></div>
                 <button className="btn text-white shadow-md text-lg bg-purple-500 mt-4">Login</button>
                 <div className="divider text-lg text-slate-400 my-2">Or</div>
@@ -26,7 +49,7 @@ const Login = () => {
                   Login with Google
                 </button>
                 <p className='text-lg mt-2'>Don't have an account? <Link to='/signup' className='text-purple-500 text-lg hover:underline'>Signup Now</Link></p>
-              </fieldset>
+              </form>
             </div>
           </div>
         </div>
