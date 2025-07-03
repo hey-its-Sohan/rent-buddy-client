@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { use } from 'react';
 import logo from '../../assets/logo.png'
 import { Link } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
+
+  const { user, signOutUser } = use(AuthContext)
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+  }
+
   return (
     <div className='bg-purple-500'>
       <div className='max-w-screen-xl mx-auto'>
@@ -32,16 +45,20 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <div className='flex gap-3 mr-5 md:mr-0'>
-              <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Login</button>
-              <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Sign up</button>
-            </div>
+            {
+              user ? <div className=' text-white text-lg font-medium'>{user.displayName}</div> :
+                <div className='flex gap-3 mr-5 md:mr-0'>
+                  <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Login</button>
+                  <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Sign up</button>
+                </div>
+            }
+
             <div className="dropdown dropdown-end ml-5">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    alt="User"
+                    src={user?.photoURL} />
                 </div>
               </div>
               <ul
@@ -54,7 +71,7 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
+                <li onClick={handleSignOut}><a>Logout</a></li>
               </ul>
             </div>
           </div>

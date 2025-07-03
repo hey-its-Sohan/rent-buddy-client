@@ -5,19 +5,25 @@ import { toast } from 'react-toastify';
 
 const SignUp = () => {
 
-  const { createUser } = use(AuthContext)
+  const { setUser, updateUser, createUser } = use(AuthContext)
 
   const handleSignUp = (e) => {
     e.preventDefault()
     const form = e.target
     const formData = new FormData(form)
-    const { email, password } = Object.fromEntries(formData.entries())
+    const { name, photoURL, email, password } = Object.fromEntries(formData.entries())
 
     createUser(email, password)
       .then((result) => {
         // Signed up 
+        const user = result.user;
+
+        updateUser({ displayName: name, photoURL: photoURL })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photoURL })
+          })
         toast.success('Account Created Successfully.')
-        console.log(result.user);
+
         // ...
       })
       .catch((error) => {

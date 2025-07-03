@@ -11,6 +11,8 @@ import MyListings from "../Pages/MyListings/MyListings";
 import UpdatePost from "../Pages/UpdatePost/UpdatePost";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoutes from "../Components/PrivateRoutes/PrivateRoutes";
+import PostDetails from "../Pages/PostDetails/PostDetails";
 
 
 export const router = createBrowserRouter([
@@ -26,11 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/addpost',
-        Component: AddPost
+        element: <PrivateRoutes><AddPost></AddPost></PrivateRoutes>
       },
       {
         path: '/updatepost',
-        Component: UpdatePost
+        element: <PrivateRoutes><UpdatePost></UpdatePost></PrivateRoutes>
       },
       {
         path: '/browseListing',
@@ -38,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/myListing',
-        Component: MyListings
+        element: <PrivateRoutes><MyListings></MyListings></PrivateRoutes>
       },
       {
         path: '/login',
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: '/signup',
         Component: SignUp
+      },
+      {
+        path: '/post-details',
+        element: <PrivateRoutes><PostDetails></PostDetails></PrivateRoutes>
       },
 
     ]
