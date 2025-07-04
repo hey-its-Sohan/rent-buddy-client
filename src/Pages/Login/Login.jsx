@@ -1,12 +1,15 @@
 import React, { use } from 'react';
-import { Link, Navigate } from 'react-router';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { toast } from 'react-toastify';
+import logo2 from '../../assets/logo2.png'
 
 
 const Login = () => {
 
   const { signInUser, googleSignIn } = use(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -18,6 +21,7 @@ const Login = () => {
     signInUser(email, password)
       .then(result => {
         toast.success('Login Successfully.')
+        navigate(location?.state || '/')
         console.log(result.user);
       })
       .catch((error) => {
@@ -31,7 +35,7 @@ const Login = () => {
     googleSignIn()
       .then(result => {
         toast.success('Login Successfull!')
-        Navigate(location?.state || '/')
+        navigate(location?.state || '/')
         console.log(result);
       })
       .catch(error => {
@@ -49,6 +53,7 @@ const Login = () => {
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
+              <img className='w-60 mx-auto' src={logo2} alt="" />
               <h1 className="text-5xl font-bold">Login now!</h1>
               <form onSubmit={handleSignIn} className="fieldset">
                 <label className="label text-xl">Email</label>

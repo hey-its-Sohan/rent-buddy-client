@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import logo from '../../assets/logo.png'
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
@@ -38,18 +38,22 @@ const Navbar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <li className=' text-lg font-medium'><a>Home</a></li>
-              <Link to={'/addpost'} ><li className=' text-lg font-medium'><a>Add Post</a></li></Link>
-              <li className=' text-lg font-medium'><a>Browse Listing</a></li>
-              <li className=' text-lg font-medium'><a>My Listing</a></li>
+              <NavLink to={'/'} className={({ isActive }) => isActive ? "mr-4 border-b-2 border-white text-white pb-1 font-bold" : "pb-1 mr-4"
+              }><li className=' text-lg font-medium'>Home</li></NavLink>
+              <NavLink to={'/addpost'} className={({ isActive }) => isActive ? "mr-4 border-b-2 border-white text-white pb-1 font-bold" : "pb-1 mr-4"
+              }><li className=' text-lg font-medium'>Add Post</li></NavLink>
+              <NavLink to={'/browseListing'} className={({ isActive }) => isActive ? "mr-4 border-b-2 border-white text-white pb-1 font-bold" : "pb-1 mr-4"
+              }><li className=' text-lg font-medium'>Browse Listing</li></NavLink>
+              <NavLink to={'/myListing'} className={({ isActive }) => isActive ? "mr-4 border-b-2 border-white text-white pb-1 font-bold" : "pb-1 mr-4"
+              }><li className=' text-lg font-medium'>My Listing</li></NavLink>
             </ul>
           </div>
           <div className="navbar-end">
             {
               user ? <div className=' text-white text-lg font-medium'>{user.displayName}</div> :
                 <div className='flex gap-3 mr-5 md:mr-0'>
-                  <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Login</button>
-                  <button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Sign up</button>
+                  <NavLink to={'/login'}><button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Login</button></NavLink>
+                  <NavLink to={'/signup'}><button className='text-lg font-medium btn btn-xs py-5 md:py-0 sm:btn-sm md:btn-md  '>Sign up</button></NavLink>
                 </div>
             }
 

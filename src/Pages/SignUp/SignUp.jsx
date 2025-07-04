@@ -1,17 +1,28 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
 
   const { setUser, updateUser, createUser } = use(AuthContext)
+  const [errorMessage, setErrorMessage] = useState('')
+  const navigate = useNavigate();
+  const location = useLocation()
 
   const handleSignUp = (e) => {
     e.preventDefault()
     const form = e.target
     const formData = new FormData(form)
     const { name, photoURL, email, password } = Object.fromEntries(formData.entries())
+    setErrorMessage('')
+
+    // password validation
+    const passwordValidation = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (passwordValidation.test(password) === false) {
+      setErrorMessage('Password must contain at least one uppercase, one lowercase letter and be at least 6 characters long.')
+      return;
+    }
 
     createUser(email, password)
       .then((result) => {
@@ -21,13 +32,18 @@ const SignUp = () => {
         updateUser({ displayName: name, photoURL: photoURL })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photoURL })
-          })
-        toast.success('Account Created Successfully.')
+          }).then(() => {
+            toast.success('Account Created Successfully');
+            navigate(location?.state || '/');
+          }).catch(() => {
+            setErrorMessage('Profile update failed.');
+          });
 
         // ...
       })
       .catch((error) => {
         console.log("Error signing up:", error.code, error.message);
+        setErrorMessage(error.message);
         // ..
       });
   }
@@ -50,6 +66,8 @@ const SignUp = () => {
                 <input type="text" name='photoURL' className="input" placeholder="URL" />
                 <label className="label text-xl">Password</label>
                 <input type="password" name='password' className="input" placeholder="Password" />
+
+                {errorMessage && <p className='text-cyan-600'>{errorMessage}</p>}
 
                 <button className="btn text-white shadow-md text-lg bg-purple-500 mt-4">Sign Up</button>
                 <div className="divider text-lg text-slate-400 my-2">Or</div>
