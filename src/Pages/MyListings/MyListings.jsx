@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { Eye, Trash2, UserRoundPen } from 'lucide-react';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 
 const MyListings = () => {
@@ -18,7 +19,39 @@ const MyListings = () => {
       })
   }, [user?.email])
 
-  console.log(myList, user)
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        fetch(`http://localhost:3000/details/${id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+
+              // remainig List
+
+              const remainigLists = setMyList.filter(list => myList._id !== id)
+              setMyList(remainigLists)
+            }
+          })
+      }
+    });
+  }
 
   return (
     <div className='max-w-screen-xl mx-auto mb-20'>
@@ -44,11 +77,9 @@ const MyListings = () => {
                 <td className='text-lg text-slate-500'>{list.location}</td>
                 <td className='text-lg text-slate-500'>{list.title}</td>
                 <td className='text-lg text-slate-500'>{list.roomType}</td>
-                <th><Link to={`/post-details/${list._id}`}><button className='btn'><Eye className='text-purple-500' /></button></Link></th>
-                <th><Link to={`/updatepost/${list._id}`}><button className='btn'><UserRoundPen className='text-cyan-500' /></button></Link></th>
-                <th><button className='btn'><Trash2 className='text-purple-500'></Trash2></button></th>
-
-                {/* <th><button onClick={() => handleDelete(list._id)} className='btn'>D</button></th> */}
+                <th><Link to={`/post-details/${list._id}`}><button className='btn text-purple-500 hover:text-purple-700'><Eye /></button></Link></th>
+                <th><Link to={`/updatepost/${list._id}`}><button className='btn text-cyan-500 hover:text-cyan-700'><UserRoundPen /></button></Link></th>
+                <th><button onClick={() => handleDelete(list._id)} className='btn hover:text-red-500 text-purple-500'><Trash2></Trash2></button></th>
               </tr>)
             }
 

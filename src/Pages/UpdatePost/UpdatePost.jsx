@@ -5,7 +5,7 @@ import { AuthContext } from '../../Components/Context/AuthContext';
 
 const UpdatePost = () => {
   const { user } = use(AuthContext)
-  const { _id, title, location, rent, roomType, Lifestyle, description, contact, availability } = useLoaderData()
+  const { _id, title, location, rent, roomType, Lifestyle, description, contact, availability, photo } = useLoaderData()
   console.log('post details');
 
   const handleUpdatePost = e => {
@@ -125,7 +125,7 @@ const UpdatePost = () => {
         <div className='my-5'>
           <fieldset className="fieldset bg-base-200  border-purple-500 rounded-box border p-4">
             <label className="label text-cyan-500 text-lg">Photo</label>
-            <input type="text" name='photo' className="input w-full " placeholder="Enter Photo URL" />
+            <input type="text" name='photo' defaultValue={photo} className="input w-full " placeholder="Enter Photo URL" />
           </fieldset>
         </div>
         <input type="submit" className='btn w-full text-lg text-white bg-cyan-500' value="Update Post" />
