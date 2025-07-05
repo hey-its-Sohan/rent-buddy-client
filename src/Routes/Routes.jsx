@@ -32,16 +32,19 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes><AddPost></AddPost></PrivateRoutes>
       },
       {
-        path: '/updatepost',
-        element: <PrivateRoutes><UpdatePost></UpdatePost></PrivateRoutes>
+        path: '/updatepost/:id',
+        element: <PrivateRoutes><UpdatePost></UpdatePost></PrivateRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
+
       },
       {
         path: '/browseListing',
-        Component: BrowseListing
+        Component: BrowseListing,
+        loader: () => fetch("http://localhost:3000/roommates")
       },
       {
         path: '/myListing',
-        element: <PrivateRoutes><MyListings></MyListings></PrivateRoutes>
+        element: <PrivateRoutes><MyListings></MyListings></PrivateRoutes>,
       },
       {
         path: '/login',

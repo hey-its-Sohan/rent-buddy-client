@@ -130,8 +130,8 @@ const AddPost = () => {
             <label className="label text-cyan-500 text-lg">Photo</label>
             <input type="text" name='photo' className="input w-full " placeholder="Enter Photo URL" />
           </fieldset>
-
         </div>
+
         <input type="submit" className='btn w-full text-lg text-white bg-cyan-500' value="Add Post" />
       </form>
 
