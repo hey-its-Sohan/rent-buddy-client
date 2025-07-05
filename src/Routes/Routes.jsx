@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        Component: Home
+        Component: Home,
+        loader: () => fetch("http://localhost:3000/featured")
       },
       {
         path: '/addpost',
@@ -51,8 +52,9 @@ export const router = createBrowserRouter([
         Component: SignUp
       },
       {
-        path: '/post-details',
-        element: <PrivateRoutes><PostDetails></PostDetails></PrivateRoutes>
+        path: '/post-details/:id',
+        element: <PrivateRoutes><PostDetails></PostDetails></PrivateRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
       },
 
     ]
