@@ -13,7 +13,8 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoutes from "../Components/PrivateRoutes/PrivateRoutes";
 import PostDetails from "../Pages/PostDetails/PostDetails";
-
+import Lottie from "lottie-react";
+import loading from "../../src/assets/Animations/loading.json"
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       {
         path: '/',
         Component: Home,
+        hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
         loader: () => fetch("http://localhost:3000/featured")
       },
       {
@@ -40,6 +42,7 @@ export const router = createBrowserRouter([
       {
         path: '/browseListing',
         Component: BrowseListing,
+        hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
         loader: () => fetch("http://localhost:3000/roommates")
       },
       {
@@ -48,10 +51,12 @@ export const router = createBrowserRouter([
       },
       {
         path: '/login',
+        hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
         Component: Login
       },
       {
         path: '/signup',
+        hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
         Component: SignUp
       },
       {

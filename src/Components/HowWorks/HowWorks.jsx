@@ -5,7 +5,7 @@ import react from "../../assets/react.png"
 
 const HowWorks = () => {
   return (
-    <div className='max-w-screen-xl mx-auto my-10'>
+    <div className='max-w-screen-xl mx-auto my-10 px-10 md:px-7 lg:px-0'>
       <h1 className='text-4xl font-bold text-purple-500 my-7'>How It Works</h1>
       <div className='md:flex gap-5'>
         <div className='bg-slate-100 mb-5 p-5 rounded-xl'>

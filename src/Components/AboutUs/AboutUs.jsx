@@ -1,16 +1,17 @@
 import React from 'react';
 import Lottie from "lottie-react";
-import groovyWalkAnimation from "../../assets/Animation - 1751725378063.json";
+import groovyWalkAnimation from "../../assets/Animations/Animation - 1751725378063.json";
 import { FaCheckCircle, FaUserCheck, FaMapMarkedAlt, FaComments, FaLock, FaMoon } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const AboutUs = () => {
   return (
     <div >
-      <div className="mb-10 max-w-screen-xl mx-auto">
+      <div className="mb-10 max-w-screen-xl mx-auto px-10 md:px-7 lg:px-0">
         <h2 className="text-4xl font-bold text-purple-500">About Us</h2>
         {/* <p className="text-lg text-gray-600 mt-2">Know who we are and why we built RentBuddy</p> */}
       </div>
-      <section className="bg-gray-100 text-gray-800 py-5 px-5 md:px-20">
+      <section className="bg-gray-100 text-gray-800 py-5 px-10 md:px-7 lg:px-20">
 
         <div className='max-w-screen-xl mx-auto'>
           {/* Hero + Mission Row */}
@@ -82,8 +83,8 @@ const AboutUs = () => {
           <div className="text-center">
             <h4 className="text-2xl font-bold mb-3">Ready to find your perfect roommate?</h4>
             <div className="flex justify-center gap-4 flex-wrap">
-              <button className="bg-purple-500 text-white px-5 py-2 rounded hover:bg-purple-700">Browse Listings</button>
-              <button className="bg-cyan-500 text-white px-5 py-2 rounded hover:bg-cyan-600">Add Your Listing</button>
+              <Link to={'/browseListing'}><button className="bg-purple-500 text-white px-5 py-2 rounded hover:bg-purple-700">Browse Listings</button></Link>
+              <Link to={'/addpost'}><button className="bg-cyan-500 text-white px-5 py-2 rounded hover:bg-cyan-600">Add Your Listing</button></Link>
             </div>
           </div>
         </div>

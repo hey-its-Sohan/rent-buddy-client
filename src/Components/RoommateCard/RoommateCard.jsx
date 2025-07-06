@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 
 const RoommateCard = ({ roommateCard }) => {
   return (
-    <div >
-      <div className="card h-[500px] mb-3 bg-base-100 w-96 shadow-sm">
+    <div className=''>
+      <div className="card h-[500px] mb-3 bg-base-100 w-80 md:w-[365px] lg:w-96 shadow-sm">
         <figure>
           <img
             className=''

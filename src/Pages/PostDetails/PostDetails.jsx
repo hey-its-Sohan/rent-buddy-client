@@ -40,7 +40,7 @@ const PostDetails = () => {
   return (
     <div className='w-10/12 md:w-2/3 mx-auto my-20 shadow-md'>
       <div className="card lg:card-side bg-base-100 shadow-sm">
-        <figure className='md:w-9/12 '>
+        <figure className='lg:w-9/12 '>
           <img
             src={roomDetails.photo}
             alt="Roommate Post"

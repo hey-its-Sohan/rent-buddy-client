@@ -5,12 +5,12 @@ import { Link } from 'react-router';
 const AllPost = ({ post }) => {
   return (
     <div>
-      <div className="card h-[500px] mb-3 bg-base-100 w-96 shadow-sm">
+      <div className="card h-[500px] mb-3 bg-base-100 w-80 md:w-[365px] lg:w-96 shadow-sm">
         <figure>
           <img
             className=''
             src={post.photo}
-            alt="Shoes" />
+            alt="" />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-xl font-bold">

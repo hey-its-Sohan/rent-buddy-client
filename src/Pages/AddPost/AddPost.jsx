@@ -37,7 +37,7 @@ const AddPost = () => {
   }
 
   return (
-    <div className='max-w-screen-xl mx-auto'>
+    <div className='max-w-screen-xl mx-auto px-10 md:px-7 lg:px-0'>
 
       <div className='text-4xl font-bold my-10 text-purple-500'>Add to Find Roommate</div>
 

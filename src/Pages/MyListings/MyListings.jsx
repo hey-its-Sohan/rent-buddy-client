@@ -37,16 +37,17 @@ const MyListings = () => {
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount) {
+              // remainig List
+              const remainigLists = setMyList.filter(list => myList._id !== id)
+              setMyList(remainigLists)
+
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success"
               });
 
-              // remainig List
 
-              const remainigLists = setMyList.filter(list => myList._id !== id)
-              setMyList(remainigLists)
             }
           })
       }
@@ -54,7 +55,7 @@ const MyListings = () => {
   }
 
   return (
-    <div className='max-w-screen-xl mx-auto mb-20'>
+    <div className='max-w-screen-xl mx-auto mb-20 px-10 md:px-7 lg:px-0 md:my-30'>
       <h1 className='text-4xl font-bold text-purple-500 my-10'>My Post Lists</h1>
       <div className="overflow-x-auto rounded-box border border-purple-500 bg-base-100">
         <table className="table">

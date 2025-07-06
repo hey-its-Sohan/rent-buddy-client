@@ -13,6 +13,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router';
 const Banner = () => {
   return (
     <div>
@@ -72,7 +73,7 @@ const Banner = () => {
                   <p className="mb-5">
                     Use location, rent, and lifestyle preferences to <br />find your ideal match.
                   </p>
-                  <button className="btn shadow-none border-none bg-cyan-500 text-white">Browse Listings</button>
+                  <Link to={'/browseListing'}><button className="btn shadow-none border-none bg-cyan-500 text-white">Browse Listings</button></Link>
                 </div>
               </div>
             </div>
@@ -116,7 +117,7 @@ const Banner = () => {
                   <p className="mb-5">
                     From matching to move-in—RentBuddy helps <br />every step of the way.
                   </p>
-                  <button className="btn shadow-none border-none bg-cyan-500 text-white ">Add Your Listing</button>
+                  <Link to={"/addPost"}><button className="btn shadow-none border-none bg-cyan-500 text-white ">Add Your Listing</button></Link>
                 </div>
               </div>
             </div>
