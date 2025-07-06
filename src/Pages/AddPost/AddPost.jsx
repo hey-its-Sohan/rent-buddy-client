@@ -13,7 +13,7 @@ const AddPost = () => {
     const addPost = Object.fromEntries(formData.entries());
 
     // send data to the database
-    fetch('http://localhost:3000/roommates', {
+    fetch('https://rent-buddy-server-six.vercel.app/roommates', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

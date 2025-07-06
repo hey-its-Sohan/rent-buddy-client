@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         path: '/',
         Component: Home,
         hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
-        loader: () => fetch("http://localhost:3000/featured")
+        loader: () => fetch("https://rent-buddy-server-six.vercel.app/featured")
       },
       {
         path: '/addpost',
@@ -36,14 +36,14 @@ export const router = createBrowserRouter([
       {
         path: '/updatepost/:id',
         element: <PrivateRoutes><UpdatePost></UpdatePost></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
+        loader: ({ params }) => fetch(`https://rent-buddy-server-six.vercel.app/details/${params.id}`)
 
       },
       {
         path: '/browseListing',
         Component: BrowseListing,
         hydrateFallbackElement: <div className='max-w-screen-xl mx-auto text-center my-[400px]'><Lottie animationData={loading} loop={true} className="w-1/4 mx-auto" /></div>,
-        loader: () => fetch("http://localhost:3000/roommates")
+        loader: () => fetch("https://rent-buddy-server-six.vercel.app/roommates")
       },
       {
         path: '/myListing',
@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
       {
         path: '/post-details/:id',
         element: <PrivateRoutes><PostDetails></PostDetails></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:3000/details/${params.id}`)
+        loader: ({ params }) => fetch(`https://rent-buddy-server-six.vercel.app/details/${params.id}`)
       },
 
     ]

@@ -1,6 +1,7 @@
 import { BadgeCheck, BadgeX } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router';
+import greyBG from '../../assets/grey-bg.jpg'
 
 const RoommateCard = ({ roommateCard }) => {
   return (
@@ -9,7 +10,7 @@ const RoommateCard = ({ roommateCard }) => {
         <figure>
           <img
             className=''
-            src={roommateCard.photo}
+            src={roommateCard.photo || greyBG}
             alt="Shoes" />
         </figure>
         <div className="card-body">

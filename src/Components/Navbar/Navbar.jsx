@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import logo from '../../assets/logo.png'
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
+import userProfile from "../../assets/userProfile.png"
 
 const Navbar = () => {
 
@@ -71,8 +72,8 @@ const Navbar = () => {
                 <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
-                      alt="User"
-                      src={user?.photoURL} />
+                      alt={userProfile}
+                      src={user?.photoURL || userProfile} />
                   </div>
                 </div>
                 <ul

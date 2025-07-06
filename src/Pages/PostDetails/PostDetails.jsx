@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { BadgeCheck, BadgeX, ThumbsUp } from 'lucide-react';
 import { toast } from 'react-toastify';
+import greyBG from '../../assets/grey-bg.jpg'
 
 
 const PostDetails = () => {
@@ -19,7 +20,7 @@ const PostDetails = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/like/${roomDetails._id}`, {
+    fetch(`https://rent-buddy-server-six.vercel.app/like/${roomDetails._id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -42,7 +43,7 @@ const PostDetails = () => {
       <div className="card lg:card-side bg-base-100 shadow-sm">
         <figure className='lg:w-9/12 '>
           <img
-            src={roomDetails.photo}
+            src={roomDetails.photo || greyBG}
             alt="Roommate Post"
             className='w-full h-full object-cover'
           />

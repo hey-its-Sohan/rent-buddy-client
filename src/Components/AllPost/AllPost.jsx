@@ -1,6 +1,7 @@
 import { BadgeCheck, BadgeX } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router';
+import greyBG from '../../assets/grey-bg.jpg'
 
 const AllPost = ({ post }) => {
   return (
@@ -9,7 +10,7 @@ const AllPost = ({ post }) => {
         <figure>
           <img
             className=''
-            src={post.photo}
+            src={post.photo || greyBG}
             alt="" />
         </figure>
         <div className="card-body">

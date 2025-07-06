@@ -16,7 +16,7 @@ const UpdatePost = () => {
 
     // send updated post details to DB
 
-    fetch(`http://localhost:3000/details/${_id}`, {
+    fetch(`https://rent-buddy-server-six.vercel.app/details/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

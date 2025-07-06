@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../../Firebase/firebase.init';
-import { GoogleAuthProvider } from 'firebase/auth/web-extension';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {

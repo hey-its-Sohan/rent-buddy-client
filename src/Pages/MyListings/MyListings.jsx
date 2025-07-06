@@ -11,7 +11,7 @@ const MyListings = () => {
   const { user } = use(AuthContext)
 
   useEffect(() => {
-    fetch(`http://localhost:3000/mypost/${user?.email}`)
+    fetch(`https://rent-buddy-server-six.vercel.app/mypost/${user?.email}`)
       .then(res => res.json())
       .then((data) => {
         console.log('fetched data', data)
@@ -31,16 +31,15 @@ const MyListings = () => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        fetch(`http://localhost:3000/details/${id}`, {
+        fetch(`https://rent-buddy-server-six.vercel.app/details/${id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount) {
               // remainig List
-              const remainigLists = setMyList.filter(list => myList._id !== id)
+              const remainigLists = myList.filter(list => list._id !== id)
               setMyList(remainigLists)
-
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
