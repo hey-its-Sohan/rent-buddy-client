@@ -125,6 +125,12 @@ const AddPost = () => {
           }
         </div>
 
+        {/* <div className='my-5'>
+          <fieldset className="fieldset bg-base-200  border-purple-500 rounded-box border p-4">
+            <label className="label text-cyan-500 text-lg">Likes</label>
+            <input readOnly type="text" name='likes' className="input w-full " placeholder="Likes" />
+          </fieldset>
+        </div> */}
         <div className='my-5'>
           <fieldset className="fieldset bg-base-200  border-purple-500 rounded-box border p-4">
             <label className="label text-cyan-500 text-lg">Photo</label>

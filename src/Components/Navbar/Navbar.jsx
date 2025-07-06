@@ -16,6 +16,11 @@ const Navbar = () => {
       })
   }
 
+  const handleThemeToggle = (e) => {
+    const isDark = e.target.checked;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  };
+
   return (
     <div className='bg-purple-500'>
       <div className='max-w-screen-xl mx-auto'>
@@ -28,10 +33,14 @@ const Navbar = () => {
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><a>Home</a></li>
-                <li><a>Add Post</a></li>
-                <li><a>Browse Listing</a></li>
-                <li><a>My Listing</a></li>
+                <NavLink to={'/'} className={({ isActive }) => isActive ? "ml-2 border-b-2 border-purple-500 text-purple-500 pb-1 font-bold" : "pb-1 ml-2 font-normal"
+                }><li className=' text-lg font-medium'>Home</li></NavLink>
+                <NavLink to={'/addpost'} className={({ isActive }) => isActive ? "ml-2 border-b-2 border-purple-500 text-purple-500 pb-1 font-bold" : "pb-1 ml-2 font-normal"
+                }><li className=' text-lg font-medium'>Add Post</li></NavLink>
+                <NavLink to={'/browseListing'} className={({ isActive }) => isActive ? "ml-2 border-b-2 border-purple-500 text-purple-500 pb-1 font-bold" : "pb-1 ml-2 font-normal"
+                }><li className=' text-lg font-medium'>Browse Listing</li></NavLink>
+                <NavLink to={'/myListing'} className={({ isActive }) => isActive ? "ml-2 border-b-2 border-purple-500 text-purple-500 pb-1 font-bold" : "pb-1 ml-2 font-normal"
+                }><li className=' text-lg font-medium'>My Listing</li></NavLink>
               </ul>
             </div>
             <div><img className='w-30 md:w-40' src={logo} alt="" /></div>
@@ -59,7 +68,7 @@ const Navbar = () => {
 
             {
               user ? <div className="dropdown dropdown-end ml-5">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
                       alt="User"
@@ -70,13 +79,13 @@ const Navbar = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                   <li>
-                    <a className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
+                    <a className=" text-sm">
+                      Email: {user.email}
                     </a>
                   </li>
-                  <li><a>Settings</a></li>
-                  <li onClick={handleSignOut}><a>Logout</a></li>
+                  <li><a className='text-sm'>Settings</a></li>
+                  <li><a className='text-sm'>Theme: <input type="checkbox" value="dark" className="toggle theme-controller" onChange={handleThemeToggle} /></a></li>
+                  <li onClick={handleSignOut}><a className='text-sm'>Logout</a></li>
                 </ul>
               </div> : <div></div>
             }

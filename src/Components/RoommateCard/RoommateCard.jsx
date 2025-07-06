@@ -17,7 +17,7 @@ const RoommateCard = ({ roommateCard }) => {
             {roommateCard.title}
             {
               roommateCard.availability === 'Available' ? <div className="badge text-white py-4 bg-purple-500"><BadgeCheck color="white" />Available</div> :
-                <div className="badge text-white py-4 bg-purple-500"><BadgeX color="white" />Unavailable</div>
+                <div className="badge py-6 bg-rose-50 text-rose-500"><BadgeX className='text-rose-500' />Not Available</div>
             }
 
           </h2>
